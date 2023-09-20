@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halden Municipal Election 2023</title>
     <link href="storystyle.css" rel="stylesheet" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -22,6 +23,150 @@
         <h2>...the results are in!</h2>
         <p>Halden is in for a change in government, as the 2023 election contained a few surprises!</p>
         <div style="min-height:341px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/cn75t/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/cn75t/full.png" alt="" /></noscript></div>
+        <p>Let's look at the biggest surprises.</p>
     </section>
+    <section class="scrollContainer">
+        <div class="scrollText">
+            <h2>Biggest decline</h2>
+            <aside class="alignRight">
+                <div class="circle redBg">
+                    <span class="big">-1239</span>
+                    <span class="small">Votes</span>
+                </div>
+            </aside>
+            <p>Senterpartiet had a decrease in votes of 1239 since 2019. This means that Arbeiderpartiet is losing a lot of partners since 2019.</p>
+        </div>
+        <div class="scrollText">
+            <h2>Highest riser</h2>
+            <aside class="alignRight">
+                <div class="circle greenBg">
+                    <span class="big">1290</span>
+                    <span class="small">Votes</span>
+                </div>
+            </aside>
+            <p>INP, who were founded in 2020 and thusly not elegible in the 2019 election, make a huger impact on the 2023 election.</p>
+        </div>
+        <div class="scrollText">
+            <h2>Steal from the rich...</h2>
+            <p>Comparing the numbers, we could argue that INP has "stolen" the votes Senterpartiet got in 2019. This means that Høyre now have more potenital partners and will probably be in government for the next four years.</p>
+            <p>But, these were not the only changes from 2019.</p>
+            <canvas id="comparison"></canvas>
+        </div>
+    </section>
+
+    <script>
+        const comparison = document.getElementById("comparison")
+        const data = [
+  {
+    Partyname: "Arbeiderpartiet",
+    Abbreviation: "AP",
+    Votes2019: "2603",
+    Votes2023: "2982"
+  },
+  {
+    Partyname: "Fremskrittspartiet",
+    Abbreviation: "FrP",
+    Votes2019: "1034",
+    Votes2023: "1030"
+  },
+  {
+    Partyname: "Høyre",
+    Abbreviation: "H",
+    Votes2019: "4141",
+    Votes2023: "3997"
+  },
+  {
+    Partyname: "Kristelig Folkeparti",
+    Abbreviation: "KrF",
+    Votes2019: "478",
+    Votes2023: "510"
+  },
+  {
+    Partyname: "Miljøpartiet de Grønne",
+    Abbreviation: "MdG",
+    Votes2019: "1058",
+    Votes2023: "530"
+  },
+  {
+    Partyname: "Rødt",
+    Abbreviation: "R",
+    Votes2019: "1044",
+    Votes2023: "802"
+  },
+  {
+    Partyname: "Senterpartiet",
+    Abbreviation: "Sp",
+    Votes2019: "2037",
+    Votes2023: "798"
+  },
+  {
+    Partyname: "Sosialistisk Venstreparti",
+    Abbreviation: "SV",
+    Votes2019: "744",
+    Votes2023: "672"
+  },
+  {
+    Partyname: "Venstre",
+    Abbreviation: "V",
+    Votes2019: "393",
+    Votes2023: "190"
+  },
+  {
+    Partyname: "Pensjonistpartiet",
+    Abbreviation: "Pp",
+    Votes2019: "1206",
+    Votes2023: "1438"
+  },
+  {
+    Partyname: "Industri og Næringspartiet",
+    Abbreviation: "INP",
+    Votes2019: "0",
+    Votes2023: "1290"
+  },
+  {
+    Partyname: "Liberalistene",
+    Abbreviation: "Lib",
+    Votes2019: "0",
+    Votes2023: "51"
+  },
+  {
+    Partyname: "Norgesdemokratene",
+    Abbreviation: "ND",
+    Votes2019: "0",
+    Votes2023: "201"
+  }
+]
+
+        const labelData = []
+        data.map((item) => labelData.push(item.Abbreviation))
+        const votes2019 = []
+        data.map((item) => votes2019.push(item.Votes2019))
+        const votes2023 = []
+        data.map((item) => votes2023.push(item.Votes2023))
+
+
+
+        new Chart(comparison, {
+            type: "bar",
+            data: {
+                labels: labelData,
+                datasets: [
+                    {
+                        label: "Votes 2019",
+                        data: votes2019
+                    },
+                    {
+                        label: "Votes 2023",
+                        data: votes2023
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        })
+    </script>
 </body>
 </html>

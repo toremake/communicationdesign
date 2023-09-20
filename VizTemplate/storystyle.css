@@ -47,3 +47,41 @@ header a {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.textSection {
+    max-width: 50rem;
+    margin: 0 auto;
+    display: block;
+    clear: both;
+}
+.alignRight {
+    float: right;
+    margin: 0 0 1rem 1rem;
+}
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+.redBg {
+    background: #b61010;
+    color: #fff;
+}
+.greenBg {
+    background: #588002;
+    color: #fff;
+}
+.big {
+    text-align: center;
+    font-size: 4rem;
+    display: block;
+    clear: both;
+}
+.small {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    display: block;
+}
