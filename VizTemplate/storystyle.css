@@ -31,14 +31,22 @@ header a {
     width: 100vw;
     min-height: 60vh;
     overflow: hidden;
+    transition: background-image 2s;
 }
 
 .scrollText {
-    margin: 30vh auto;
+    margin: 50vh auto;
     max-width: 50rem;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.8);
     color: #000;
+}
+#changingBg {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 50vh;
 }
 #introduction {
     background-image: url("https://images.unsplash.com/photo-1494172961521-33799ddd43a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80");

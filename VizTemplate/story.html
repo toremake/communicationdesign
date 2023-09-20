@@ -25,8 +25,8 @@
         <div style="min-height:341px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/cn75t/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/cn75t/full.png" alt="" /></noscript></div>
         <p>Let's look at the biggest surprises.</p>
     </section>
-    <section class="scrollContainer">
-        <div class="scrollText">
+    <section id="changingBg" class="scrollContainer">
+        <div id="decline" class="scrollText">
             <h2>Biggest decline</h2>
             <aside class="alignRight">
                 <div class="circle redBg">
@@ -36,7 +36,7 @@
             </aside>
             <p>Senterpartiet had a decrease in votes of 1239 since 2019. This means that Arbeiderpartiet is losing a lot of partners since 2019.</p>
         </div>
-        <div class="scrollText">
+        <div id="increase" class="scrollText">
             <h2>Highest riser</h2>
             <aside class="alignRight">
                 <div class="circle greenBg">
@@ -46,7 +46,7 @@
             </aside>
             <p>INP, who were founded in 2020 and thusly not elegible in the 2019 election, make a huger impact on the 2023 election.</p>
         </div>
-        <div class="scrollText">
+        <div id="comparisonchart" class="scrollText">
             <h2>Steal from the rich...</h2>
             <p>Comparing the numbers, we could argue that INP has "stolen" the votes Senterpartiet got in 2019. This means that Høyre now have more potenital partners and will probably be in government for the next four years.</p>
             <p>But, these were not the only changes from 2019.</p>
@@ -167,6 +167,33 @@
                 }
             }
         })
+
+        //Function to check if element is in viewport
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+
+            );
+        }
+
+        document.addEventListener('scroll', function () {
+            if(isInViewport(document.getElementById("decline"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://images.unsplash.com/photo-1606955317161-cb7d261c039a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80)"
+            }
+            if(isInViewport(document.getElementById("increase"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://images.unsplash.com/photo-1465343161283-c1959138ddaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80)"
+            }
+            if(isInViewport(document.getElementById("comparisonchart"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://images.unsplash.com/photo-1516706332927-bb3a20d62514?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80)"
+            }
+
+        }, {
+            passive: true
+        });
     </script>
 </body>
 </html>
