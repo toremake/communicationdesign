@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map using data from Kartverket</title>
+    <!-- INCLUDE LEAFLET CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <!-- INCLUDE LEAFLET SCRIPT LIBRARY -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+     <!-- DEFINE HEIGHT OF MAP ELEMENT -->
+     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #map { height: 600px; width: 800px; }
+     </style>
+</head>
+<body>
+    <!-- DIV FOR DRAWING MAP -->
+    <div id="map"></div>
+    <!-- SCRIPT -->
+    <script>
+        //INITIATE MAP
+        const centerLat = 59.1294
+        const centerLong = 11.3537
+        //let map = L.map('map').setView([centerLat, centerLong], 13);
+        let map = L.map('map', {
+            center: [centerLat, centerLong],
+            zoom: 13
+        })
+        //SET MAP CONSTRUCTOR
+        //Karverket offers different types of maps. Change the value of layers to get:
+        //topo : Topographical maps
+        //norges_grunnkart : Basic maps
+        //norgers_grunnkart_graatone : Grayed out basic map
+        //terreng_norgeskart : Terrain models
+        //eg : simple map
+        L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}', {
+            attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
+        }).addTo(map)
+        //SET MARKER
+        const centerMarker = L.marker([centerLat, centerLong]).addTo(map)
+    </script>
+</body>
+</html>
