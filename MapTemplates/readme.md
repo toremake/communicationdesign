@@ -18,7 +18,7 @@ This is an expanded example of List of Markers, where we use the dataset to gene
 This example show how you can use Kartverket as a map constructor. This is useful if you are going to use data from Kartverket in any of your projects.
 
 ## 5. Zoom and Animation on Scroll
-In this example, we combine the ifInViewport-function from the [Visualization template](https://github.com/toremake/communicationdesign/blob/main/VisualizationTemplate/story_adjustedCHangingBg.html) to check when certain HTML-elements are within the viewport. With the different elements in viewport, we use the flyTo()-method from Leaflet to animate and zoom the map as we scroll through the grocery stores. Possible framework for a [Story Map](https://www.esri.com/about/newsroom/arcuser/what-can-you-do-with-a-story-map/).
+In this example, we combine the ifInViewport-function from the [Visualization template](https://github.com/toremake/communicationdesign/blob/main/VisualizationTemplate/story.html) to check when certain HTML-elements are within the viewport. With the different elements in viewport, we use the flyTo()-method from Leaflet to animate and zoom the map as we scroll through the grocery stores. Possible framework for a [Story Map](https://www.esri.com/about/newsroom/arcuser/what-can-you-do-with-a-story-map/).
 
 ## 6. Map with GeoJson
 In this example, it is shown how we can add shapes (polygons etc) to highlight selected areas of a map. A GeoJSON object can consist of multiple shapes (called "Features") with each it's own set of properties (like name, content for popups and info).
