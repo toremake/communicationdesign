@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagligvarebutikker i Halden</title>
+    <!-- INCLUDE LEAFLET CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <!-- INCLUDE LEAFLET SCRIPT LIBRARY -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        div, article, section {
+            box-sizing: border-box;
+        }
+        #mapContainer {
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+
+        }
+        #scrollContainer {
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
+            padding-bottom: 50vh;
+            display: block;
+        }
+        .scrollBox {
+            position: relative;
+            display: block;
+            margin: 50vh 0 50vh 2rem;
+            z-index: 10;
+            width: 50%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 2px 2px 2px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapContainer"></div>
+    <div id="scrollContainer">
+        <article class="scrollBox" id="start"><h3>The grocery stores of Halden</h3><p>Scroll down to get a full overview of all the grocery stores in Halden.</p></article>
+        <article class="scrollBox" id="r1000b"><p>Rema 1000 Busterudparken</p></article>
+        <article class="scrollBox" id="r1000t"><p>Rema 1000 Tistedal</p></article>
+        <article class="scrollBox" id="r1000s"><p>Rema 1000 Svinesundsparken</p></article>
+        <article class="scrollBox" id="r1000br"><p>Rema 1000 Brødløs</p></article>
+        <article class="scrollBox" id="r1000r"><p>Rema 1000 Risum</p></article>
+        <article class="scrollBox" id="end"><p>This is a brief example of combining the visualization templates and map templates using Leaflet for moving the focal point and zoom of a map depending on what information is in the viewport.</p></article>
+    </div>
+
+    <script>
+        //INITIATE MAP
+        const centerLat = 59.1294
+        const centerLong = 11.3537
+        //let map = L.map('map').setView([centerLat, centerLong], 13);
+        let map = L.map('mapContainer', {
+            center: [centerLat, centerLong],
+            zoom: 13,
+            scrollWheelZoom: false
+        })
+        //SET MAP CONSTRUCTOR
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        //PLACES
+        const places = [
+            {name: "Rema 1000 Risum", lat: 59.1186, long: 11.4092},
+            {name: "Rema 1000 Busterudgata", lat: 59.1261, long: 11.3858},
+            {name: "Rema 1000 Tistedal", lat: 59.1258, long: 11.4450},
+            {name: "Rema 1000 Brødløs", lat: 59.1291, long: 11.3796},
+            {name: "Rema 1000 Svinesundsparken", lat: 59.1282, long: 11.2745}
+        ]
+
+        //Function to check if element is in viewport
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                (rect.top <= 0 && rect.bottom >= 0) || 
+                (rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth))
+            );
+        }
+        //SET MARKERS
+        //create custom icon:
+        const remaIcon = L.icon({
+            iconUrl: 'rema1000symbol.png',
+            iconSize: [40,40],
+            iconAnchor: [20,20],
+            popupAnchor: [0, -20]
+        })
+        places.map((place) => {
+            L.marker([place.lat, place.long], {icon: remaIcon}).addTo(map).bindPopup(place.name)
+        })
+        //SCRIPT FOR CHANGING MAP LOCATION
+        document.addEventListener('scroll', function () {
+            if(isInViewport(document.getElementById("start"))) {
+                map.flyTo([centerLat, centerLong], 13)
+            }
+            if(isInViewport(document.getElementById("r1000b"))) {
+                map.flyTo([59.1261,11.3858], 17)
+            }
+            if(isInViewport(document.getElementById("r1000s"))) {
+                map.flyTo([59.1282, 11.2745], 17)
+            }
+            if(isInViewport(document.getElementById("r1000t"))) {
+                map.flyTo([59.1258, 11.4450], 17)
+            }
+            if(isInViewport(document.getElementById("r1000br"))) {
+                map.flyTo([59.1291, 11.3796], 17)
+            }
+            if(isInViewport(document.getElementById("r1000r"))) {
+                map.flyTo([59.1186, 11.4092], 17)
+            }
+            if(isInViewport(document.getElementById("start"))) {
+                map.flyTo([centerLat, centerLong], 13)
+            }
+        }, {
+            passive: true
+        });
+    </script>
+</body>
+</html>
