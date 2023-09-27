@@ -172,8 +172,6 @@
         //Function to check if element is in viewport
         function isInViewport(el) {
             const rect = el.getBoundingClientRect();
-            const rect2 = document.getElementById("comparisonchart").getBoundingClientRect()
-            console.log(rect2.top, rect2.left, rect2.bottom, rect2.right, window.innerHeight)
             return (
                 //Improved check of viewport for elements exceeding viewport height
                 (rect.top <= 0 && rect.bottom >= 0) || 
