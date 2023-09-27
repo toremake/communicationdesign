@@ -3,6 +3,8 @@ In this folder, you will find some useful code examples with Leaflet as the Java
 
 I suggest going through the different [Leaflet tutorials](https://leafletjs.com/examples.html) and getting to know the [documentation](https://leafletjs.com/reference.html).
 
+Additionally, a very cool (but somewhat technical complex) [tutorial on how to connect Google Sheets and Leaflet to create a story map](https://handsondataviz.org/leaflet-storymaps-with-google-sheets.html#leaflet-storymaps-with-google-sheets).
+
 ## Basic map
 This example show the basic initiation of a map with Leaflet and OpenStreetMap. It also sets a center of the map, along with a marker to highlight the center of the map.
 
