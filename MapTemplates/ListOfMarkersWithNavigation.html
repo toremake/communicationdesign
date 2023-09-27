@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of markers</title>
+    <!-- INCLUDE LEAFLET CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <!-- INCLUDE LEAFLET SCRIPT LIBRARY -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+     <!-- DEFINE HEIGHT OF MAP ELEMENT -->
+     <style>
+        main {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            max-width: 900px;
+            margin: 10px auto;
+        }
+        #map { height: 600px; width: 800px; margin: 10px auto;}
+        article {
+            border: 1px solid #ccc;
+            background: #f3f3f3;
+            padding: .5rem;
+            margin-bottom: 5px;
+        }
+        h1 { text-align: center; }
+     </style>
+</head>
+<body>
+    <h1>Rema 1000 grocery stores in Halden</h1>
+    <!-- DIV FOR DRAWING MAP -->
+    <main>
+        <nav id="businesses"></nav>
+        <div id="map"></div>
+    </main>
+    
+    <!-- SCRIPT -->
+    <script>
+        //CENTER (HiØ)
+        const centerLat = 59.1271
+        const centerLong = 11.4045
+        
+        //DATA: ARRAY OF PLACES
+        const places = [
+            {name: "Rema 1000 Risum", lat: 59.1186, long: 11.4092},
+            {name: "Rema 1000 Busterudgata", lat: 59.1261, long: 11.3858},
+            {name: "Rema 1000 Tistedal", lat: 59.1258, long: 11.4450},
+            {name: "Rema 1000 Brødløs", lat: 59.1291, long: 11.3796},
+            {name: "Rema 1000 Svinesundsparken", lat: 59.1282, long: 11.2745}
+        ]
+
+        //INITIATE MAP
+        let map = L.map('map', {
+            center: [centerLat, centerLong],
+            zoom: 12
+        })
+
+        //SET MAP CONSTRUCTOR
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        //SET MARKERS AND BUILD NAVIGATION
+        //create custom icon:
+        const remaIcon = L.icon({
+            iconUrl: 'rema1000symbol.png',
+            iconSize: [40,40],
+            iconAnchor: [20,20],
+            popupAnchor: [0, -20]
+        })
+        //prepare navigation html
+        let navHTML = ""
+        //Loop places
+        places.map((place) => {
+            //place markers
+            L.marker([place.lat, place.long], {icon: remaIcon}).addTo(map).bindPopup(place.name)
+            //build navigation
+            navHTML += `<article><h3>${place.name}</h3><button onclick="map.flyTo([${place.lat},${place.long}],18)">Vis på kart</button></article>`
+        })
+        //Add HTML to nav
+        document.getElementById("businesses").innerHTML = navHTML
+    </script>
+</body>
+</html>

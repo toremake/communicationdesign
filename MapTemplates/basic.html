@@ -20,9 +20,11 @@
         #map { height: 600px; width: 800px; }
      </style>
 </head>
+
 <body>
     <!-- DIV FOR DRAWING MAP -->
     <div id="map"></div>
+    <button onclick="pan()">Pan example</button> <button onclick="fly()">Fly example</button>
     <!-- SCRIPT -->
     <script>
         //INITIATE MAP
@@ -40,6 +42,14 @@
         }).addTo(map);
         //SET MARKER
         const centerMarker = L.marker([centerLat, centerLong]).addTo(map)
+
+        //MOVE FUNCTIONS
+        function pan() {
+            map.panTo([59.1291,11.3796])
+        }
+        function fly() {
+            map.flyTo([59.1282,11.2745], 19)
+        }
     </script>
 </body>
 </html>

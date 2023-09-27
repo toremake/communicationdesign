@@ -7,6 +7,9 @@ This example show the basic initiation of a map with Leaflet and OpenStreetMap. 
 ## List of Markers
 This example show how we can use common JavaScript in conjunction with Leaflet to easily mark all the Rema 1000 grocery store locations in Halden. Here we also use **custom icons as markers**, by taking a Rema "R" symbol logo as a PNG-file and applying the [custom icons from the leaflet documentation](https://leafletjs.com/examples/custom-icons/). It also applies a popup for each marker indicating which Rema 1000 store is shown.
 
+## List of Markers with navigation
+This is an expanded example of List of Markers, where we use the dataset to generate navigation (a list of places with buttons) that utilize the [flyTo()-method](https://leafletjs.com/reference.html#map-flyto) in Leaflet to animate and zoom in to the specific places.
+
 ## Map with GeoJson
 In this example, it is shown how we can add shapes (polygons etc) to highlight selected areas of a map. A GeoJSON object can consist of multiple shapes (called "Features") with each it's own set of properties (like name, content for popups and info).
 
