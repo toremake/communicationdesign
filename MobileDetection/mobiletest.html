@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Detection with JavaScript</title>
+    <script src="mobile-detect.js"></script>
+</head>
+<body>
+        <h1>Mobile detect</h1>
+        <p>This page is simply used to forward the visitor to the appropriate URL</p>
+        <script>
+            const mobiledetector = new MobileDetect(window.navigator.userAgent);
+            if (mobiledetector.mobile()) {
+                //If mobiledetector.mobileGrade() is A, send to a URL for mobile (/mobile/).
+                //otherwise; send to a URL for desktops (/lynx)
+                location.href = (mobiledetector.mobileGrade() === 'A') ? '/mobile/' : '/lynx/';
+            }
+
+
+            //Source: http://hgoebl.github.io/mobile-detect.js/
+            //Documentation: https://hgoebl.github.io/mobile-detect.js/doc/MobileDetect.html
+        </script>
+</body>
+</html>
